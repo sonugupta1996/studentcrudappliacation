@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.student.entity.Student;
+import com.student.repository.CourseRepo;
 import com.student.repository.StudentRepo;
 @Service
-public class StudentServiceImpl implements studentservice {
+public class StudentServiceImpl implements Studentservice {
 
 	@Autowired
 	private StudentRepo studentrepo;
+	
+	@Autowired
+	private CourseRepo courserepo;
 	
 	
 	@Override

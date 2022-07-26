@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.student.entity.Student;
 
-public interface studentservice {
+public interface Studentservice {
 	
 	 String upsert(Student student);
 	 List<Student> getAllstudent();

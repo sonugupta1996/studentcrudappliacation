@@ -14,21 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.entity.Student;
-import com.student.service.studentservice;
+import com.student.service.Studentservice;
 
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 	
 	@Autowired
-	private studentservice studentservice;
+	private Studentservice studentservice;
+	
 	
 	@PostMapping("/createstudent")
-	public ResponseEntity<String> createStudent(@RequestBody Student student){
-		
+	public ResponseEntity<String> addstudent(@RequestBody Student student){
 		String status = studentservice.upsert(student);
 		return new ResponseEntity<String>(status, HttpStatus.CREATED);
 	}
+	
+	
 
 	@GetMapping("/allstudents")
 	public ResponseEntity<List<Student>> getallstudent(){
