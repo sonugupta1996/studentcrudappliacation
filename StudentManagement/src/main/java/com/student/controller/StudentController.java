@@ -24,7 +24,7 @@ public class StudentController {
 	private Studentservice studentservice;
 	
 	
-	@PostMapping("/createstudent")
+	@PostMapping("/")
 	public ResponseEntity<String> addstudent(@RequestBody Student student){
 		String status = studentservice.upsert(student);
 		return new ResponseEntity<String>(status, HttpStatus.CREATED);
@@ -32,22 +32,22 @@ public class StudentController {
 	
 	
 
-	@GetMapping("/allstudents")
+	@GetMapping("/")
 	public ResponseEntity<List<Student>> getallstudent(){
-		List<Student> list = studentservice.getAllstudent();
+		List<Student> list = studentservice.getAll();
 		return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getonestudent/{sid}")
+	@GetMapping("/{sid}")
 	public ResponseEntity<Student> getOneStudent(@PathVariable int sid){
 		
-		Student student = studentservice.getStudent(sid);
+		Student student = studentservice.getById(sid);
 		return new ResponseEntity<Student>(student, HttpStatus.OK);
 		
 	}
-	@DeleteMapping("/deletestudent/{sid}")
+	@DeleteMapping("/{sid}")
 	public ResponseEntity<String> deletestudent(@PathVariable int sid){
-		String deletestudent = studentservice.deletestudent(sid);
+		String deletestudent = studentservice.delete(sid);
 		return new ResponseEntity<String>(deletestudent, HttpStatus.OK);
 	}
 	

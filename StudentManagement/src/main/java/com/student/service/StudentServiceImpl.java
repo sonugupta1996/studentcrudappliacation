@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.student.entity.Student;
-import com.student.repository.CourseRepo;
+import com.student.repository.StandardRepo;
 import com.student.repository.StudentRepo;
+import com.student.repository.SubjectRepo;
 @Service
 public class StudentServiceImpl implements Studentservice {
 
@@ -16,7 +17,9 @@ public class StudentServiceImpl implements Studentservice {
 	private StudentRepo studentrepo;
 	
 	@Autowired
-	private CourseRepo courserepo;
+	private SubjectRepo subjecterepo;
+	
+    private StandardRepo standardrepo;
 	
 	
 	@Override
@@ -26,13 +29,13 @@ public class StudentServiceImpl implements Studentservice {
 	}
 
 	@Override
-	public List<Student> getAllstudent() {
+	public List<Student> getAll(){
 		return  studentrepo.findAll();
 		
 	} 
 
 	@Override
-	public Student getStudent(int sid) {
+	public Student getById(int sid) {
 		Optional<Student> findbyId = studentrepo.findById(sid);
 		if(findbyId.isPresent())
 		{
@@ -42,7 +45,7 @@ public class StudentServiceImpl implements Studentservice {
 	}
 
 	@Override
-	public String deletestudent(int sid) {
+	public String delete(int sid) {
 		studentrepo.deleteById(sid);
 		return "student is deleted";
 	}

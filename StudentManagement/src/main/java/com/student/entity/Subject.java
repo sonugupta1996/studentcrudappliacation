@@ -8,12 +8,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "course_tab")
-public class Course {
+@Table(name = "subject")
+public class Subject {
 
     @Id
-	private int cid;
-	private String courseName;
-	private String courseDisc;
+	private int id;
+	private String name;
+	private String disc;
 	
 }

@@ -9,13 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "student_tab")
+@Table(name = "student")
 public class Student {
 	
 	@Id
@@ -23,13 +24,17 @@ public class Student {
 	private int sid;
 	private int srollNo;
 	private String sname;
-	private String sstandard;
+	
 	private int sage;
 	private int sdept;
 	private String email;
 	
-	@OneToMany(targetEntity = Course.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "sc_fk",referencedColumnName ="srollNo" )
-	private List<Course> course;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Standard standard;
+	
+	@OneToMany(targetEntity = Subject.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "sc_fk",referencedColumnName ="sid" )
+	private List<Subject> subject;
 
 }
